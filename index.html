@@ -52,10 +52,6 @@
             margin-bottom: 32px;
         }
 
-        /* 
-           Substitua 'logo.png' pelo caminho/nome real do arquivo da sua logo 
-           que você vai fazer upload na mesma pasta do GitHub 
-        */
         .logo {
             max-width: 180px;
             height: auto;
@@ -125,7 +121,6 @@
             background: rgba(255, 255, 255, 0.08);
         }
 
-        /* Ajuste do ícone nativo de data/hora no tema escuro */
         input[type="datetime-local"]::-webkit-calendar-picker-indicator {
             filter: invert(1);
             cursor: pointer;
@@ -170,16 +165,15 @@
 
     <div class="container">
         <div class="header">
-            <!-- Certifique-se de salvar a imagem da logo como 'logo.png' no seu repositório -->
+            <!-- Sua imagem da logo salva como 'logo.png' na mesma pasta -->
             <img src="logo.png" alt="BoraUai Logo" class="logo">
             <p class="tagline">Mobilidade sem <span>fricção</span> direto no seu WhatsApp</p>
         </div>
 
-    <div class="features-badge">
-    <div class="badge-item">⚡ Tarifa: <strong>Fixa</strong></div>
-    <div class="badge-item">🔒 Retenção: <strong>100% Motorista</strong></div>
-</div>
-
+        <div class="features-badge">
+            <div class="badge-item">⚡ Tarifa: <strong>Fixa</strong></div>
+            <div class="badge-item">🔒 Retenção: <strong>100% Motorista</strong></div>
+        </div>
 
         <form id="orcamentoForm">
             <div class="form-group">
@@ -198,12 +192,11 @@
             </div>
 
             <div class="form-group">
-    <label for="passageiros">NÚMERO DE PASSAGEIROS</label>
-    <select id="passageiros" required>
-        <option value="Até 4 Passageiros">Até 4 passageiros</option>
-    </select>
-</div>
-
+                <label for="passageiros">NÚMERO DE PASSAGEIROS</label>
+                <select id="passageiros" required>
+                    <option value="Até 4 passageiros">Até 4 passageiros</option>
+                </select>
+            </div>
 
             <div class="form-group">
                 <label for="musical">ESTILO MUSICAL PREFERIDO</label>
@@ -231,25 +224,21 @@
         document.getElementById('orcamentoForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
-            // Configuração do seu número profissional do WhatsApp Business
-            // Insira o DDD + Número (apenas números, ex: 5531999999999)
-            const numeroWhatsApp = "5531994243444"; 
+            // AJUSTE SEU NÚMERO AQUI: Código do país (55) + DDD + Número profissional
+            const numeroWhatsApp = "5531999999999"; 
 
-            // Coleta de dados informados no formulário
             const embarque = document.getElementById('embarque').value;
             const desembarque = document.getElementById('desembarque').value;
             const horarioRaw = document.getElementById('horario').value;
             const passageiros = document.getElementById('passageiros').value;
             const musical = document.getElementById('musical').value;
 
-            // Formatação amigável da data e hora
             const dataHora = new Date(horarioRaw);
             const horarioFormatado = dataHora.toLocaleString('pt-BR', { 
                 dateStyle: 'short', 
                 timeStyle: 'short' 
             });
 
-            // Montagem do texto personalizado para a sua API do WhatsApp
             const textoMensagem = `Olá! Gostaria de um orçamento para corrida no sistema BoraUai:%0A%0A` +
                 `📍 *Origem:* ${encodeURIComponent(embarque)}%0A` +
                 `🏁 *Destino:* ${encodeURIComponent(desembarque)}%0A` +
@@ -257,7 +246,6 @@
                 `👥 *Passageiros:* ${encodeURIComponent(passageiros)}%0A` +
                 `🎵 *Preferência Musical:* ${encodeURIComponent(musical)}`;
 
-            // Redirecionamento dinâmico para o WhatsApp
             const urlWhatsApp = `https://whatsapp.com{numeroWhatsApp}&text=${textoMensagem}`;
             
             window.open(urlWhatsApp, '_blank');
