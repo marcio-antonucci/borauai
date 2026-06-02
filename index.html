@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BoraUai Technologies | Mobilidade Premium</title>
-    <!-- Google Fonts para tipografia elegante -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -220,8 +219,8 @@
         function enviarParaWhatsApp(event) {
             event.preventDefault();
 
-            // Seu número oficial inserido e travado para o correto funcionamento do redirecionamento
-            const /5531994243444; 
+            // Seu número oficial inserido e travado (como string para evitar erros matemáticos)
+            const numeroTelefone = "5531994243444"; 
 
             const emb = document.getElementById('embarque').value;
             const des = document.getElementById('desembarque').value;
@@ -244,7 +243,11 @@
                         "👥 *Passageiros:* " + pas + "\n" +
                         "🎵 *Preferência Musical:* " + mus;
 
-            let url = "https://wa.me"/ + 5531994243444 + "?text=" + encodeURIComponent(texto);
+            // Link corrigido com a barra correta antes do número
+            let url = "https://wa.me/" + numeroTelefone + "?text=" + encodeURIComponent(texto);
+            
+            // Alternativa que abre em uma nova guia, caso prefira (descomente a linha abaixo e remova a debaixo)
+            // window.open(url, '_blank');
             
             // Empurra o navegador a abrir o aplicativo nativo do WhatsApp de imediato
             window.location.href = url;
