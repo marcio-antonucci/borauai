@@ -127,6 +127,7 @@
         }
 
         .btn-submit {
+            display: flex;
             width: 100%;
             background: var(--accent-green);
             color: #000000;
@@ -136,21 +137,17 @@
             font-size: 1rem;
             font-weight: 700;
             cursor: pointer;
-            transition: transform 0.2s ease, background-color 0.2s ease;
-            margin-top: 10px;
-            display: flex;
+            text-decoration: none;
             justify-content: center;
             align-items: center;
             gap: 8px;
+            margin-top: 10px;
+            transition: transform 0.2s ease;
         }
 
         .btn-submit:hover {
             background: #65c422;
             transform: translateY(-2px);
-        }
-
-        .btn-submit:active {
-            transform: translateY(0);
         }
 
         .footer-text {
@@ -165,7 +162,6 @@
 
     <div class="container">
         <div class="header">
-            <!-- Sua imagem da logo salva como 'logo.png' na mesma pasta -->
             <img src="logo.png" alt="BoraUai Logo" class="logo">
             <p class="tagline">Mobilidade sem <span>fricção</span> direto no seu WhatsApp</p>
         </div>
@@ -175,7 +171,7 @@
             <div class="badge-item">🔒 Retenção: <strong>100% Motorista</strong></div>
         </div>
 
-        <form id="orcamentoForm">
+        <form id="orcamentoForm" onsubmit="enviarParaWhatsApp(event)">
             <div class="form-group">
                 <label for="embarque">LOCAL DE EMBARQUE</label>
                 <input type="text" id="embarque" placeholder="Ex: Aeroporto Confins" required>
@@ -211,45 +207,48 @@
             </div>
 
             <button type="submit" class="btn-submit">
-                <span>💬 Solicitar Orçamento via WhatsApp</span>
+                💬 Solicitar Orçamento via WhatsApp
             </button>
         </form>
 
         <div class="footer-text">
-            BoraUai Technologies 2026 | Belo Horizonte - MG
+            BoraUai Technologies | Belo Horizonte - MG
         </div>
     </div>
 
     <script>
-        document.getElementById('orcamentoForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+        function enviarParaWhatsApp(event) {
+            event.preventDefault();
 
-            // AJUSTE SEU NÚMERO AQUI: Código do país (55) + DDD + Número profissional
-            const numeroWhatsApp = "5531994243444"; 
+            // Seu número oficial inserido e travado para o correto funcionamento do redirecionamento
+            const MEU_TELEFONE = "5531994243444"; 
 
-            const embarque = document.getElementById('embarque').value;
-            const desembarque = document.getElementById('desembarque').value;
-            const horarioRaw = document.getElementById('horario').value;
-            const passageiros = document.getElementById('passageiros').value;
-            const musical = document.getElementById('musical').value;
+            const emb = document.getElementById('embarque').value;
+            const des = document.getElementById('desembarque').value;
+            const hor = document.getElementById('horario').value;
+            const pas = document.getElementById('passageiros').value;
+            const mus = document.getElementById('musical').value;
 
-            const dataHora = new Date(horarioRaw);
-            const horarioFormatado = dataHora.toLocaleString('pt-BR', { 
-                dateStyle: 'short', 
-                timeStyle: 'short' 
+            // Formatação nativa para ler a data/hora de forma amigável no WhatsApp
+            const dataHoraObj = new Date(hor);
+            const formatoDataHora = dataHoraObj.toLocaleString('pt-BR', {
+                dateStyle: 'short',
+                timeStyle: 'short'
             });
 
-            const textoMensagem = `Olá! Gostaria de um orçamento para corrida no sistema BoraUai:%0A%0A` +
-                `📍 *Origem:* ${encodeURIComponent(embarque)}%0A` +
-                `🏁 *Destino:* ${encodeURIComponent(desembarque)}%0A` +
-                `📅 *Data/Hora:* ${encodeURIComponent(horarioFormatado)}%0A` +
-                `👥 *Passageiros:* ${encodeURIComponent(passageiros)}%0A` +
-                `🎵 *Preferência Musical:* ${encodeURIComponent(musical)}`;
+            // Geração da mensagem organizada com espaçamentos corretos
+            let texto = "Olá! Gostaria de um orçamento para corrida no sistema BoraUai:\n\n" +
+                        "📍 *Origem:* " + emb + "\n" +
+                        "🏁 *Destino:* " + des + "\n" +
+                        "📅 *Data/Hora:* " + formatoDataHora + "\n" +
+                        "👥 *Passageiros:* " + pas + "\n" +
+                        "🎵 *Preferência Musical:* " + mus;
 
-            const urlWhatsApp = `https://whatsapp.com{numeroWhatsApp}&text=${textoMensagem}`;
+            let url = "https://wa.me" + MEU_TELEFONE + "?text=" + encodeURIComponent(texto);
             
-            window.open(urlWhatsApp, '_blank');
-        });
+            // Empurra o navegador a abrir o aplicativo nativo do WhatsApp de imediato
+            window.location.href = url;
+        }
     </script>
 </body>
 </html>
