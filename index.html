@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BoraUai Technologies | Mobilidade Premium</title>
+    <!-- Google Fonts para tipografia elegante -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #0B111E;
+            --card-bg: #141D2F;
+            --text-primary: #FFFFFF;
+            --text-secondary: #94A3B8;
+            --accent-green: #76E22A;
+            --accent-orange: #FF6600;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        /* 
+           Substitua 'logo.png' pelo caminho/nome real do arquivo da sua logo 
+           que você vai fazer upload na mesma pasta do GitHub 
+        */
+        .logo {
+            max-width: 180px;
+            height: auto;
+            margin-bottom: 16px;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        .tagline span {
+            color: var(--accent-green);
+            font-weight: 600;
+        }
+
+        .features-badge {
+            display: flex;
+            justify-content: space-between;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 12px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.02);
+        }
+
+        .badge-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .badge-item strong {
+            color: var(--text-primary);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            letter-spacing: 0.5px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--accent-orange);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        /* Ajuste do ícone nativo de data/hora no tema escuro */
+        input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+            cursor: pointer;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: var(--accent-green);
+            color: #000000;
+            border: none;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-submit:hover {
+            background: #65c422;
+            transform: translateY(-2px);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        .footer-text {
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-top: 24px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <!-- Certifique-se de salvar a imagem da logo como 'logo.png' no seu repositório -->
+            <img src="logo.png" alt="BoraUai Logo" class="logo">
+            <p class="tagline">Mobilidade sem <span>fricção</span> direto no seu WhatsApp</p>
+        </div>
+
+        <div class="features-badge">
+            <div class="badge-item">⚡ Tarifa: <strong>R$ 3,33/km</strong></div>
+            <div class="badge-item">🔒 Retenção: <strong>100% Motorista</strong></div>
+        </div>
+
+        <form id="orcamentoForm">
+            <div class="form-group">
+                <label for="embarque">LOCAL DE EMBARQUE</label>
+                <input type="text" id="embarque" placeholder="Ex: Aeroporto Confins" required>
+            </div>
+
+            <div class="form-group">
+                <label for="desembarque">LOCAL DE DESEMBARQUE</label>
+                <input type="text" id="desembarque" placeholder="Ex: Hotel Savassi" required>
+            </div>
+
+            <div class="form-group">
+                <label for="horario">DATA E HORÁRIO</label>
+                <input type="datetime-local" id="horario" required>
+            </div>
+
+            <div class="form-group">
+                <label for="passageiros">NÚMERO DE PASSAGEIROS</label>
+                <select id="passageiros" required>
+                    <option value="1">1 passageiro</option>
+                    <option value="2">2 passageiros</option>
+                    <option value="3">3 passageiros</option>
+                    <option value="4">4 passageiros</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="musical">ESTILO MUSICAL PREFERIDO</label>
+                <select id="musical" required>
+                    <option value="Sem preferência (Som ambiente)">Sem preferência (Som ambiente)</option>
+                    <option value="MPB / Bossa Nova">MPB / Bossa Nova</option>
+                    <option value="Rock Clássico / Blues">Rock Clássico / Blues</option>
+                    <option value="Pop / Eletrônica">Pop / Eletrônica</option>
+                    <option value="Jazz / Instrumental">Jazz / Instrumental</option>
+                    <option value="Sertanejo / Forró">Sertanejo / Forró</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn-submit">
+                <span>💬 Solicitar Orçamento via WhatsApp</span>
+            </button>
+        </form>
+
+        <div class="footer-text">
+            BoraUai Technologies 2026 | Belo Horizonte - MG
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('orcamentoForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Configuração do seu número profissional do WhatsApp Business
+            // Insira o DDD + Número (apenas números, ex: 5531999999999)
+            const numeroWhatsApp = "5531994243444"; 
+
+            // Coleta de dados informados no formulário
+            const embarque = document.getElementById('embarque').value;
+            const desembarque = document.getElementById('desembarque').value;
+            const horarioRaw = document.getElementById('horario').value;
+            const passageiros = document.getElementById('passageiros').value;
+            const musical = document.getElementById('musical').value;
+
+            // Formatação amigável da data e hora
+            const dataHora = new Date(horarioRaw);
+            const horarioFormatado = dataHora.toLocaleString('pt-BR', { 
+                dateStyle: 'short', 
+                timeStyle: 'short' 
+            });
+
+            // Montagem do texto personalizado para a sua API do WhatsApp
+            const textoMensagem = `Olá! Gostaria de um orçamento para corrida no sistema BoraUai:%0A%0A` +
+                `📍 *Origem:* ${encodeURIComponent(embarque)}%0A` +
+                `🏁 *Destino:* ${encodeURIComponent(desembarque)}%0A` +
+                `📅 *Data/Hora:* ${encodeURIComponent(horarioFormatado)}%0A` +
+                `👥 *Passageiros:* ${encodeURIComponent(passageiros)}%0A` +
+                `🎵 *Preferência Musical:* ${encodeURIComponent(musical)}`;
+
+            // Redirecionamento dinâmico para o WhatsApp
+            const urlWhatsApp = `https://whatsapp.com{numeroWhatsApp}&text=${textoMensagem}`;
+            
+            window.open(urlWhatsApp, '_blank');
+        });
+    </script>
+</body>
+</html>
