@@ -3,199 +3,302 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BoraUai Technologies | Mobilidade Premium</title>
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
+    <title>BoraUai | Mobilidade Premium - Edição Copa 2026</title>
     <style>
         :root {
-            --bg-color: #0B111E;
-            --card-bg: #141D2F;
-            --text-primary: #FFFFFF;
-            --text-secondary: #94A3B8;
-            --accent-green: #76E22A;
-            --accent-orange: #FF6600;
+            --primary-color: #009c3b; /* Verde Copa */
+            --secondary-color: #ffdf00; /* Amarelo Copa */
+            --accent-color: #002776; /* Azul Seleção */
+            --background-dark: #0b1a10; /* Fundo escuro esverdeado */
+            --card-bg: rgba(16, 41, 24, 0.65);
+            --text-light: #ffffff;
+            --text-muted: #aae0bc;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            line-height: 1.6;
-            padding: 20px;
+            background: linear-gradient(135deg, var(--background-dark) 0%, #050a07 100%);
+            color: var(--text-light);
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Marca d'água sutil de futebol/copa ao fundo */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(circle at 80% 20%, rgba(0, 156, 59, 0.15) 0%, transparent 50%),
+                              radial-gradient(circle at 20% 80%, rgba(255, 223, 0, 0.1) 0%, transparent 40%);
+            z-index: 0;
+            pointer-events: none;
         }
 
         .container {
-            max-width: 480px;
-            width: 100%;
             background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 156, 59, 0.3);
             border-radius: 24px;
-            padding: 32px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 40px 30px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 30px rgba(0, 156, 59, 0.2);
+            z-index: 1;
+            position: relative;
         }
 
-        .header {
+        /* Selo de Tecnologia BoraUai */
+        .brand-header {
             text-align: center;
-            margin-bottom: 32px;
+            margin-bottom: 30px;
         }
 
-        .logo {
-            max-width: 180px;
+        .logo-placeholder {
+            max-width: 150px;
             height: auto;
-            margin-bottom: 16px;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 10px rgba(255, 223, 0, 0.5));
         }
 
-        .tagline {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            font-weight: 400;
+        .tech-badge {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
+            border: 1px solid var(--secondary-color);
+            color: var(--text-light);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 0 15px rgba(0, 156, 59, 0.4);
+            margin-bottom: 10px;
         }
 
-        .tagline span {
-            color: var(--accent-green);
-            font-weight: 600;
+        h1 {
+            font-size: 1.8rem;
+            color: var(--text-light);
+            font-weight: 700;
+            margin-bottom: 5px;
         }
 
-        .features-badge {
-            display: flex;
-            justify-content: space-between;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 12px;
-            border-radius: 12px;
-            margin-bottom: 24px;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            border: 1px solid rgba(255, 255, 255, 0.02);
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 25px;
         }
 
-        .badge-item {
-            display: flex;
+        /* Badge da Placa do Veículo */
+        .vehicle-plate-container {
+            background: #ffffff;
+            color: #000000;
+            border: 3px solid #000000;
+            border-radius: 8px;
+            padding: 5px 15px;
+            display: inline-flex;
             align-items: center;
-            gap: 6px;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        .vehicle-plate-container::before {
+            content: "BRASIL";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            background: #002776;
+            color: white;
+            font-size: 0.5rem;
+            text-align: center;
+            line-height: 10px;
+            height: 10px;
+            font-weight: normal;
+        }
+        .vehicle-plate-container span {
+            margin-top: 8px;
         }
 
-        .badge-item strong {
-            color: var(--text-primary);
+        /* Grid de Infos Rápidas (Tarifa/Retenção) */
+        .info-ribbon {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
         }
 
+        .info-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid var(--secondary-color);
+            padding: 10px 15px;
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        .info-item span {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .info-item strong {
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+
+        /* Formulário */
         .form-group {
             margin-bottom: 20px;
+            text-align: left;
         }
 
         label {
             display: block;
-            margin-bottom: 8px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 600;
-            color: var(--text-secondary);
-            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        input, select {
+        input[type="text"], input[type="datetime-local"], select {
             width: 100%;
             padding: 14px 16px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 12px;
-            color: var(--text-primary);
+            color: var(--text-light);
             font-size: 1rem;
             transition: all 0.3s ease;
         }
 
         input:focus, select:focus {
             outline: none;
-            border-color: var(--accent-orange);
-            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--secondary-color);
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 10px rgba(255, 223, 0, 0.2);
         }
 
-        input[type="datetime-local"]::-webkit-calendar-picker-indicator {
-            filter: invert(1);
-            cursor: pointer;
+        option {
+            background: #0b1a10;
+            color: var(--text-light);
         }
 
-        .btn-submit {
-            display: flex;
+        /* Botão WhatsApp Estilo Copa */
+        .btn-whatsapp {
             width: 100%;
-            background: var(--accent-green);
-            color: #000000;
-            border: none;
             padding: 16px;
+            background: linear-gradient(90deg, #009c3b 0%, #027a30 100%);
+            border: none;
+            border-bottom: 4px solid #015220;
             border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 700;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
             cursor: pointer;
-            text-decoration: none;
-            justify-content: center;
+            transition: all 0.2s ease;
+            box-shadow: 0 8px 20px rgba(0, 156, 59, 0.3);
+            display: flex;
             align-items: center;
-            gap: 8px;
-            margin-top: 10px;
-            transition: transform 0.2s ease;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+            text-transform: uppercase;
         }
 
-        .btn-submit:hover {
-            background: #65c422;
+        .btn-whatsapp:hover {
             transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(0, 156, 59, 0.5);
+            background: linear-gradient(90deg, #028a36 0%, #009c3b 100%);
         }
 
-        .footer-text {
-            text-align: center;
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            margin-top: 24px;
+        .btn-whatsapp:active {
+            transform: translateY(2px);
+            border-bottom-width: 0px;
+        }
+
+        footer {
+            margin-top: 30px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <div class="header">
-            <img src="logo.png" alt="BoraUai Logo" class="logo">
-            <p class="tagline">Mobilidade sem <span>fricção</span> direto no seu WhatsApp</p>
+        
+        <div class="brand-header">
+            <div class="tech-badge">BoraUai Technologies</div>
+            
+            <img src="logo.png" alt="BoraUai Logo" class="logo-placeholder" onerror="this.style.display='none'">
+            
+            <h1>Mobilidade Premium</h1>
+            <p class="subtitle">Conforto e fricção zero direto no seu WhatsApp</p>
+            
+            <div class="vehicle-plate-container">
+                <span>TEO5I63</span>
+            </div>
         </div>
 
-        <div class="features-badge">
-            <div class="badge-item">⚡ Tarifa: <strong>Fixa</strong></div>
-            <div class="badge-item">🔒 Retenção: <strong>100% Motorista</strong></div>
+        <div class="info-ribbon">
+            <div class="info-item">
+                <span>Tarifa</span>
+                <strong>⚡ Fixa</strong>
+            </div>
+            <div class="info-item">
+                <span>Retenção</span>
+                <strong>🔒 100% Motorista</strong>
+            </div>
         </div>
 
-        <form id="orcamentoForm" onsubmit="enviarParaWhatsApp(event)">
+        <form id="tripForm" onsubmit="enviarWhatsApp(event)">
             <div class="form-group">
-                <label for="embarque">LOCAL DE EMBARQUE</label>
-                <input type="text" id="embarque" placeholder="Ex: Aeroporto Confins" required>
+                <label for="embarque">Local de Embarque</label>
+                <input type="text" id="embarque" placeholder="Ex: Aeroporto de Confins" required>
             </div>
 
             <div class="form-group">
-                <label for="desembarque">LOCAL DE DESEMBARQUE</label>
+                <label for="desembarque">Local de Desembarque</label>
                 <input type="text" id="desembarque" placeholder="Ex: Hotel Savassi" required>
             </div>
 
             <div class="form-group">
-                <label for="horario">DATA E HORÁRIO</label>
-                <input type="datetime-local" id="horario" required>
+                <label for="dataHora">Data e Horário</label>
+                <input type="datetime-local" id="dataHora" required>
             </div>
 
             <div class="form-group">
-                <label for="passageiros">NÚMERO DE PASSAGEIROS</label>
+                <label for="passageiros">Número de Passageiros</label>
                 <select id="passageiros" required>
-                    <option value="Até 4 passageiros">Até 4 passageiros</option>
+                    <option value="1">1 Pessoa</option>
+                    <option value="2">2 Pessoas</option>
+                    <option value="3">3 Pessoas</option>
+                    <option value="4">4 Pessoas (Máximo)</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="musical">ESTILO MUSICAL PREFERIDO</label>
-                <select id="musical" required>
+                <label for="musica">Estilo Musical Preferido</label>
+                <select id="musica">
                     <option value="Sem preferência (Som ambiente)">Sem preferência (Som ambiente)</option>
                     <option value="MPB / Bossa Nova">MPB / Bossa Nova</option>
                     <option value="Rock Clássico / Blues">Rock Clássico / Blues</option>
@@ -205,52 +308,46 @@
                 </select>
             </div>
 
-            <button type="submit" class="btn-submit">
+            <button type="submit" class="btn-whatsapp">
                 💬 Solicitar Orçamento via WhatsApp
             </button>
         </form>
 
-        <div class="footer-text">
-            BoraUai Technologies | Belo Horizonte - MG
-        </div>
+        <footer>
+            BoraUai Technologies &copy; 2026 | Belo Horizonte - MG
+        </footer>
     </div>
 
     <script>
-        function enviarParaWhatsApp(event) {
+        function enviarWhatsApp(event) {
             event.preventDefault();
-
-            // Seu número oficial inserido e travado (como string para evitar erros matemáticos)
-            const numeroTelefone = "5531994243444"; 
-
-            const emb = document.getElementById('embarque').value;
-            const des = document.getElementById('desembarque').value;
-            const hor = document.getElementById('horario').value;
-            const pas = document.getElementById('passageiros').value;
-            const mus = document.getElementById('musical').value;
-
-            // Formatação nativa para ler a data/hora de forma amigável no WhatsApp
-            const dataHoraObj = new Date(hor);
-            const formatoDataHora = dataHoraObj.toLocaleString('pt-BR', {
-                dateStyle: 'short',
-                timeStyle: 'short'
-            });
-
-            // Geração da mensagem organizada com espaçamentos corretos
-            let texto = "Olá! Gostaria de um orçamento para corrida no sistema BoraUai:\n\n" +
-                        "📍 *Origem:* " + emb + "\n" +
-                        "🏁 *Destino:* " + des + "\n" +
-                        "📅 *Data/Hora:* " + formatoDataHora + "\n" +
-                        "👥 *Passageiros:* " + pas + "\n" +
-                        "🎵 *Preferência Musical:* " + mus;
-
-            // Link corrigido com a barra correta antes do número
-            let url = "https://wa.me/" + numeroTelefone + "?text=" + encodeURIComponent(texto);
             
-            // Alternativa que abre em uma nova guia, caso prefira (descomente a linha abaixo e remova a debaixo)
-            // window.open(url, '_blank');
-            
-            // Empurra o navegador a abrir o aplicativo nativo do WhatsApp de imediato
-            window.location.href = url;
+            // Defina o seu número de WhatsApp aqui (apenas números com DDD)
+            const numeroTelefone = "5531999999999"; 
+
+            const embarque = document.getElementById('embarque').value;
+            const desembarque = document.getElementById('desembarque').value;
+            const dataHora = new Date(document.getElementById('dataHora').value).toLocaleString('pt-BR');
+            const passageiros = document.getElementById('passageiros').value;
+            const musica = document.getElementById('musica').value;
+            const placa = "TEO5I63";
+
+            // Montagem da mensagem formatada para o motorista
+            const mensagem = `Olá! Gostaria de solicitar um orçamento premium via BoraUai:
+
+📍 *Embarque:* ${embarque}
+🏁 *Desembarque:* ${desembarque}
+📅 *Data/Hora:* ${dataHora}
+👥 *Passageiros:* ${passageiros} ${passageiros == 1 ? 'pessoa' : 'pessoas'}
+🎵 *Estilo Musical:* ${musica}
+🚗 *Veículo Selecionado (Placa):* ${placa}
+
+Aguardo o retorno com as condições!`;
+
+            const mensagemCodificada = encodeURIComponent(mensagem);
+            const urlWhatsApp = `https://api.whatsapp.com/send?phone=${numeroTelefone}&text=${mensagemCodificada}`;
+
+            window.open(urlWhatsApp, '_blank');
         }
     </script>
 </body>
